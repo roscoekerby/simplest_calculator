@@ -1,30 +1,49 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:example/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Calculator operations work correctly',
+      (WidgetTester tester) async {
+    // Build the widget tree
+    await tester.pumpWidget(CalculatorApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Find input fields
+    final firstNumberField = find.byType(TextField).first;
+    final secondNumberField = find.byType(TextField).last;
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // Enter first number
+    await tester.enterText(firstNumberField, '10');
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Enter second number
+    await tester.enterText(secondNumberField, '5');
+    await tester.pump();
+
+    // Test Addition
+    await tester.tap(find.text('+'));
+    await tester.pump();
+    expect(find.text('Result: 15.0'), findsOneWidget);
+
+    // Test Subtraction
+    await tester.tap(find.text('-'));
+    await tester.pump();
+    expect(find.text('Result: 5.0'), findsOneWidget);
+
+    // Test Multiplication
+    await tester.tap(find.text('*'));
+    await tester.pump();
+    expect(find.text('Result: 50.0'), findsOneWidget);
+
+    // Test Division
+    await tester.tap(find.text('/'));
+    await tester.pump();
+    expect(find.text('Result: 2.0'), findsOneWidget);
+
+    // Test Division by zero
+    await tester.enterText(secondNumberField, '0');
+    await tester.tap(find.text('/'));
+    await tester.pump();
+    expect(find.text('Result: NaN'), findsOneWidget);
   });
 }

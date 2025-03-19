@@ -24,13 +24,13 @@ class CalculatorApp extends StatelessWidget {
 class CalculatorScreen extends StatefulWidget {
   final SimplestCalculator calculator;
 
-  const CalculatorScreen(this.calculator, {Key? key}) : super(key: key);
+  const CalculatorScreen(this.calculator, {super.key});
 
   @override
-  _CalculatorScreenState createState() => _CalculatorScreenState();
+  CalculatorScreenState createState() => CalculatorScreenState();
 }
 
-class _CalculatorScreenState extends State<CalculatorScreen> {
+class CalculatorScreenState extends State<CalculatorScreen> {
   double num1 = 0;
   double num2 = 0;
   double? result;
