@@ -1,0 +1,19 @@
+name: simplest_calculator
+description: A simple calculator package that supports basic arithmetic operations.
+version: 0.0.1
+homepage: https://github.com/roscoekerby/simplest_calculator
+repository: https://github.com/roscoekerby/simplest_calculator
+issue_tracker: https://github.com/roscoekerby/simplest_calculator/issues
+documentation: https://github.com/roscoekerby/simplest_calculator/wiki
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  lints: ^3.0.0
